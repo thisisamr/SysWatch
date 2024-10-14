@@ -1,0 +1,9 @@
+package components
+
+import "github.com/thisisamr/SysWatch/internal/metrics"
+
+templ Metrics(metrics metrics.Metrics) {
+	<div hx-ext="ws" ws-connect="ws://localhost:3000/metrics" class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+		{ children... }
+	</div>
+}

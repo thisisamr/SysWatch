@@ -1,0 +1,5 @@
+<div class=\"dashed p-4 relative w-[150px]\"><div class=\"flex flex-col justify-center items-center gap-0\"><span class=\" text-blue-500 font-bold absolute\">Cpu 
+</span> <svg viewbox=\"0 0 100 55\" class=\"p-0 m-0\"><linearGradient id=\"gradient\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"100%\"><stop offset=\"0%\" stop-color=\"red\"></stop> <stop offset=\"50%\" stop-color=\"yellow\"></stop> <stop offset=\"100%\" stop-color=\"green\"></stop></linearGradient> <path class=\"meter-back-path\" d=\"M 10 50 A 40 40 0 1 1 90 50\" fill=\"none\"></path> 
+<path fill=\"none\" class=\"
+\" d=\"M 10 50 A 40 40 0 1 1 90 50\"></path></svg><p class=\"font-bold dark:text-white\">Usage 
+%</p></div></div>

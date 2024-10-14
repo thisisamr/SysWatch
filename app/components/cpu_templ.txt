@@ -1,0 +1,1 @@
+<div class=\"bg-white dark:bg-[#212529] shadow-md rounded-lg p-4\"><h5 class=\"text-xl font-semibold mb-2 dark:text-zinc-100\"><i class=\"fa-solid fa-microchip mr-2\"></i>Cpu</h5><div id=\"cpu-data\" class=\"text-sm\"></div></div>

@@ -1,0 +1,1 @@
+<style>\n\n</style><div class=\"bg-white dark:bg-[#212529] shadow-md rounded-lg p-4 overflow-scroll overflow-x-auto h-[300px] flex-1 min-h-full\"><h5 class=\"text-xl font-semibold mb-2 dark:text-zinc-100\"><i class=\"fa-solid fa-cog mr-2\"></i> Processes</h5><div id=\"process-data\" class=\"text-sm\"></div></div>

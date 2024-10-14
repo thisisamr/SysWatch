@@ -1,0 +1,40 @@
+package components
+
+import (
+	"fmt"
+	"strconv"
+)
+
+const arcLength = 126       // circle=2*pi*radius; 126=pi*40
+const emptyDashLength = 500 // must be larger than the rest of the full circle without arc, so larger than 2*pi*radius - arcLength
+// const filledArcLength = arcLength * ({input}/ 100);
+
+css GuageStyle(percentage float64) {
+	stroke-dasharray: { fmt.Sprintf("%f %d",percentage,emptyDashLength) };
+}
+
+templ Guage(input float64, index int) {
+	<div class="dashed p-4 relative w-[150px]">
+		<div class="flex flex-col justify-center items-center gap-0">
+			<span class=" text-blue-500 font-bold absolute">Cpu { strconv.Itoa(index+1) }</span>
+			<svg viewbox="0 0 100 55" class="p-0 m-0">
+				<linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%">
+					<stop offset="0%" stop-color="red"></stop>
+					<stop offset="50%" stop-color="yellow"></stop>
+					<stop offset="100%" stop-color="green"></stop>
+				</linearGradient>
+				<path
+					class="meter-back-path"
+					d="M 10 50 A 40 40 0 1 1 90 50"
+					fill="none"
+				></path>
+				<path
+					fill="none"
+					class={ "meter-value",GuageStyle(arcLength*(input/100)) }
+					d="M 10 50 A 40 40 0 1 1 90 50"
+				></path>
+			</svg>
+			<p class="font-bold dark:text-white">Usage { strconv.FormatFloat(input,'f',2,64) }%</p>
+		</div>
+	</div>
+}

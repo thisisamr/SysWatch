@@ -1,0 +1,25 @@
+package app
+
+import (
+	"github.com/thisisamr/SysWatch/app/components"
+	"github.com/thisisamr/SysWatch/internal/metrics"
+)
+
+templ Page(metrics metrics.Metrics) {
+	@App() {
+		@components.Metrics(metrics) {
+			@components.Cpu() {
+				<!-- @components.CpuInfo(metrics.CPUInfo) -->
+			}
+			@components.SysInfo() {
+				<!-- @components.SystemInfo(metrics.SystemInfo.Info) -->
+			}
+			@components.Disk() {
+				<!-- @components.DiskInfo(metrics.DiskInfo.Usage) -->
+			}
+			@components.Process() {
+				<!-- @components.ProcessInfo() -->
+			}
+		}
+	}
+}

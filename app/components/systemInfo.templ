@@ -1,0 +1,76 @@
+package components
+
+import (
+	"fmt"
+	"github.com/shirou/gopsutil/v4/host"
+	"strconv"
+	"time"
+)
+
+templ SystemInfo(info *host.InfoStat) {
+	<!-- <div class="max-w-md mx-auto bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden"> -->
+	<div class="px-4 py-3" hx-swap-oob="innerHTML:#system-data">
+		<table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
+			<tbody>
+				<tr class="bg-gray-50 dark:bg-zinc-700">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Hostname</td>
+					<td class="px-3 py-2">{ info.Hostname }</td>
+				</tr>
+				<tr class="bg-white dark:bg-transparent">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Uptime</td>
+					<td class="px-3 py-2">{ formatUptime(info.Uptime) }</td>
+				</tr>
+				<tr class="bg-gray-50 dark:bg-zinc-700">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Boot Time</td>
+					<td class="px-3 py-2 text-zinc-500">{ FormatBootTime(info.BootTime) }</td>
+				</tr>
+				<tr class="bg-white dark:bg-transparent">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Processes</td>
+					<td class="px-3 py-2">{ strconv.FormatUint(info.Procs, 10) }</td>
+				</tr>
+				<tr class="bg-gray-50 dark:bg-zinc-700">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">OS</td>
+					<td class="px-3 py-2">{ info.OS }</td>
+				</tr>
+				<tr class="bg-white dark:bg-transparent">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Platform</td>
+					<td class="px-3 py-2">{ info.Platform } { info.PlatformVersion }</td>
+				</tr>
+				<tr class="bg-gray-50 dark:bg-zinc-700">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Kernel</td>
+					<td class="px-3 py-2">{ info.KernelVersion } ({ info.KernelArch })</td>
+				</tr>
+				<tr class="bg-white dark:bg-transparent">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Virtualization</td>
+					<td class="px-3 py-2">{ info.VirtualizationSystem } ({ info.VirtualizationRole })</td>
+				</tr>
+				<tr class="bg-gray-50 dark:bg-zinc-700">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Host ID</td>
+					<td class="px-3 py-2">{ info.HostID }</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- </div> -->
+}
+
+func formatUptime(uptime uint64) string {
+	// Convert uptime (seconds) to a time.Duration
+	duration := time.Duration(uptime) * time.Second
+
+	// Extract hours, minutes, and seconds
+	hours := int(duration.Hours())
+	minutes := int(duration.Minutes()) % 60
+	seconds := int(duration.Seconds()) % 60
+
+	// Format the result as a human-readable string
+	return fmt.Sprintf("Uptime: %02d hours, %02d minutes, %02d seconds", hours, minutes, seconds)
+}
+
+func FormatBootTime(bootTime uint64) string {
+	// Convert Unix timestamp to time.Time
+	t := time.Unix(int64(bootTime), 0)
+
+	// Format time to human-readable string
+	return t.Format("January 02, 2006, 03:04:05 PM")
+}

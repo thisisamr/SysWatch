@@ -1,0 +1,7 @@
+<!-- @components.CpuInfo(metrics.CPUInfo) -->
+ 
+<!-- @components.SystemInfo(metrics.SystemInfo.Info) -->
+ 
+<!-- @components.DiskInfo(metrics.DiskInfo.Usage) -->
+ 
+<!-- @components.ProcessInfo() -->

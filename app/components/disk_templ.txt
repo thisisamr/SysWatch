@@ -1,0 +1,2 @@
+<div class=\"bg-white dark:bg-[#212529] shadow-md rounded-lg p-4 flex flex-col gap-2 lg:flex-row justify-center\"><div><h5 class=\"text-xl font-semibold mb-2 text-light-blue-500 dark:text-zinc-100\"><i class=\"fa-solid fa-server mr-2\"></i> Disk</h5><div id=\"disk-data\" class=\"text-sm w-full\"></div></div>
+</div>

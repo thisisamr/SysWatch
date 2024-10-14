@@ -1,0 +1,2 @@
+<span hx-swap-oob=\"innerHTML:#timestamp\" class=\"text-white text-xs\">
+</span>

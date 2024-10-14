@@ -1,0 +1,9 @@
+package components
+
+import "github.com/shirou/gopsutil/v4/mem"
+
+templ MemInfo(mem *mem.VirtualMemoryStat) {
+	<div hx-swap-oob="innerHTML:#mem-data">
+		@Chart(mem.UsedPercent, "Memory Usage ")
+	</div>
+}

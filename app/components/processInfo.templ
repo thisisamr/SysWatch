@@ -1,0 +1,54 @@
+package components
+
+import (
+	"fmt"
+	"github.com/thisisamr/SysWatch/internal/metrics"
+)
+
+templ ProcessInfo(process []*metrics.Proc) {
+	<div class="px-4 py-3" hx-swap-oob="innerHTML:#process-data">
+		<table class="w-full text-sm  text-left text-gray-700 dark:text-gray-300">
+			<thead>
+				<tr class="bg-gray-50 dark:bg-zinc-700">
+					<th class="px-3 py-2 font-medium text-gray-900 dark:text-white">PID</th>
+					<th class="px-3 py-2 font-medium text-gray-900 dark:text-white">Name</th>
+					<th class="px-3 py-2 font-medium text-gray-900 dark:text-white">CPU %</th>
+					<th class="px-3 py-2 font-medium text-gray-900 dark:text-white">Memory</th>
+				</tr>
+			</thead>
+			<tbody>
+				for _, item := range process {
+					<tr class="bg-white dark:bg-transparent">
+						<td class="px-3 py-2 text-zinc-500">{ fmt.Sprintf("%d", item.Pid) }</td>
+						<td class="px-3 py-2 text-zinc-500">
+							<div class="relative group">
+								<span class="block max-w-[100px] truncate">
+									{ item.Name }
+								</span>
+								<span class="absolute z-10 hidden group-hover:block bg-gray-700 text-white text-xs rounded py-1 px-2 -mt-6 whitespace-nowrap">
+									{ item.Name }
+								</span>
+							</div>
+						</td>
+						<td class="px-3 py-2 text-zinc-500">{ fmt.Sprintf("%.2f", item.CpuPercent) }</td>
+						<td class="px-3 py-2 text-xs">{ fmt.Sprintf("RSS: %s / VMS: %s", formatBytes(item.Mem.RSS), formatBytes(item.Mem.VMS)) }</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+}
+
+// formatBytes takes a memory size in bytes and returns a formatted string in KB, MB, GB, etc.
+func formatBytes(bytes uint64) string {
+	const unit = 1024
+	if bytes < unit {
+		return fmt.Sprintf("%d B", bytes)
+	}
+	div, exp := int64(unit), 0
+	for n := bytes / unit; n >= unit; n /= unit {
+		div *= unit
+		exp++
+	}
+	return fmt.Sprintf("%.1f %cB", float64(bytes)/float64(div), "KMGTPE"[exp])
+}

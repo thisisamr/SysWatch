@@ -1,0 +1,48 @@
+package app
+
+import "github.com/thisisamr/SysWatch/app/components"
+
+templ App() {
+	<!DOCTYPE html>
+	<html lang="en" class="dark">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<title>SysWatch</title>
+			<link
+				rel="stylesheet"
+				href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+				integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+				crossorigin="anonymous"
+				referrerpolicy="no-referrer"
+			/>
+			<style>
+      body {
+        @apply bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white;
+      }
+      .monitor-row p {
+        @apply mb-0;
+      }
+    </style>
+			<script src="https://unpkg.com/htmx.org@1.9.12"></script>
+			<script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/ws.js"></script>
+			<link href="/static/output.css" rel="stylesheet"/>
+		</head>
+		<body class="bg-zinc-50 dark:bg-[#212529]">
+			@components.Nav()
+			<div class="container mx-auto sm:px-6 lg:px-8">
+				{ children... }
+			</div>
+		</body>
+		<script>
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+        var mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu.style.display === "none" || mobileMenu.style.display === "") {
+            mobileMenu.style.display = "block"; // Show the menu
+        } else {
+            mobileMenu.style.display = "none"; // Hide the menu
+        }
+    });
+</script>
+	</html>
+}

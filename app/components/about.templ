@@ -1,0 +1,64 @@
+package components
+
+templ About() {
+	<section class="bg-gray-100 dark:bg-transparent py-12 px-4 sm:px-6 lg:px-8">
+		<div class="max-w-7xl mx-auto">
+			<!-- Project Overview -->
+			<div class="text-center mb-12">
+				<h2 class="text-3xl font-extrabold text-blue-500">About SysWatch</h2>
+				<p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+					SysWatch is a system monitoring application written in Go. It offers real-time monitoring of system metrics, including CPU, memory, disk usage, network activity, and processes.
+				</p>
+			</div>
+			<!-- Project Features and Technologies -->
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<!-- Features -->
+				<div>
+					<h3 class="text-2xl font-semibold text-gray-900 dark:text-white">Features</h3>
+					<ul class="mt-4 text-gray-600 dark:text-gray-300 list-disc list-inside">
+						<li>Real-time system monitoring</li>
+						<li>WebSocket integration for live data updates</li>
+						<li>Dark and light modes</li>
+						<li>Metrics: CPU, memory, disk, network, processes</li>
+						<li>Mobile responsive design</li>
+					</ul>
+				</div>
+				<!-- Technologies -->
+				<div>
+					<h3 class="text-2xl font-semibold text-gray-900 dark:text-white">Technologies Used</h3>
+					<ul class="mt-4 text-gray-600 dark:text-gray-300 list-disc list-inside">
+						<li>Go</li>
+						<li>WebSockets</li>
+						<li class="text-blue-500">HTMX</li>
+						<li>TailwindCSS</li>
+					</ul>
+				</div>
+			</div>
+			<!-- Developer Information -->
+			<div class="mt-12 text-center">
+				<h3 class="text-2xl font-semibold text-gray-900 dark:text-white">About the Developer</h3>
+				<p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+					Hi, I'm Amr, just think of me as somone who likes to build shit. SysWatch was developed to provide a lightweight and accessible way to monitor system performance in real-time and also for fun .
+				</p>
+				<div class="mt-6">
+					<a href="https://github.com/thisisamr" class="text-blue-500 hover:text-blue-700 dark:hover:text-blue-300">
+						<i class="fa-brands fa-github dark:text-white" aria-hidden="true"><span class="p-2">|</span></i>
+					</a>
+					<a href="https://thisisamr-website.vercel.app/" class="text-blue-500 hover:text-blue-700 dark:hover:text-blue-300">
+						Personal Website
+					</a>
+				</div>
+			</div>
+			<!-- Contributions and License -->
+			<div class="mt-12 text-center">
+				<h3 class="text-2xl font-semibold text-gray-900 dark:text-white">Contributions and License</h3>
+				<p class="mt-4 text-lg text-gray-600 dark:text-gray-300">
+					Contributions to SysWatch are welcome! Feel free to clone the code and do whatever the hell you want.
+				</p>
+				<a href="https://github.com/thisisamr/SysWatch" class="mt-4 inline-block bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 dark:hover:bg-blue-300">
+					View on GitHub
+				</a>
+			</div>
+		</div>
+	</section>
+}

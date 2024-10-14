@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #000;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.gauge-container {
+  /* width: 150px; */
+  /* display: block; */
+  /* float: left; */
+  /* padding: 10px; */
+  /* background-color: red; */
+  /* margin: 7px; */
+  border: 1px solid yellow;
+  /* position: relative; */
+}
+
+/* .gauge-container > .label { */
+/*   position: absolute; */
+/*   right: 0; */
+/*   top: 0; */
+/*   color: white; */
+/*   display: inline-block; */
+/*   background: rgba(0, 0, 0, 0.5); */
+/*   font-family: monospace; */
+/*   font-size: 0.8em; */
+/*   padding: 5px 10px; */
+/* } */
+
+/* SVG Path implementation */
+.progress__background {
+  height: 80px;
+  background-color: #898989;
+}
+
+.svg-gauge__paths {
+  margin: 20px auto 10px;
+  height: 80px;
+}
+.svg-gauge__paths svg {
+  fill: transparent;
+}
+
+.dashed path {
+  stroke-linecap: round;
+}
+.dashed path.meter-back-path {
+  stroke: grey;
+  stroke-width: 2;
+}
+.dashed path.meter-value {
+  stroke-width: 5;
+  stroke: url(#gradient);
+  animation: dash cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}

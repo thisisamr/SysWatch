@@ -1,0 +1,44 @@
+package components
+
+import (
+	"fmt"
+	"github.com/shirou/gopsutil/v4/disk"
+)
+
+templ DiskInfo(diskUsage *disk.UsageStat) {
+	<!-- <div class=" shadow-md rounded-lg p-4"> -->
+	<div hx-swap-oob="innerHTML:#disk-data" class="flex flex-col sm:flex-row gap-4">
+		<!-- Disk Metrics Table -->
+		<div class="w-full">
+			<table class="min-w-full table-auto text-sm text-left">
+				<tbody class="divide-y divide-gray-100 dark:divide-zinc-600">
+					<tr class="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-transparent dark:even:bg-zinc-700">
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200 font-bold">Path</td>
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200">{ diskUsage.Path }</td>
+					</tr>
+					<tr class="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-transparent dark:even:bg-zinc-700">
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200">File System</td>
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200">{ diskUsage.Fstype }</td>
+					</tr>
+					<tr class="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-transparent dark:even:bg-zinc-700">
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200">Total Space</td>
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200">{ fmt.Sprintf("%.2f GB", float64(diskUsage.Total)/1e9) }</td>
+					</tr>
+					<tr class="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-transparent dark:even:bg-zinc-700">
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200">Used Space</td>
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200">{ fmt.Sprintf("%.2f GB", float64(diskUsage.Used)/1e9) }</td>
+					</tr>
+					<tr class="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-transparent dark:even:bg-zinc-700">
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200">Free Space</td>
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200">{ fmt.Sprintf("%.2f GB", float64(diskUsage.Free)/1e9) }</td>
+					</tr>
+					<tr class="odd:bg-gray-50 even:bg-gray-100 dark:odd:bg-transparent dark:even:bg-zinc-700">
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200">Used Percent</td>
+						<td class="px-4 py-2 text-gray-800 dark:text-gray-200">{ fmt.Sprintf("%.2f%%", diskUsage.UsedPercent) }</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- @Chart(diskUsage.UsedPercent, "Usage") -->
+	</div>
+}

@@ -1,0 +1,42 @@
+package components
+
+import (
+	"fmt"
+	"github.com/thisisamr/SysWatch/internal/metrics"
+	"strconv"
+)
+
+templ CpuInfo(cpu *metrics.CpuInfoResult) {
+	<div class="px-4 py-3" hx-swap-oob="innerHTML:#cpu-data">
+		<div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
+			for i, item := range cpu.CpuUsage {
+				@Guage(item, i)
+			}
+		</div>
+		<table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
+			<tbody>
+				<tr class="bg-gray-50 dark:bg-zinc-700">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Model Name</td>
+					<td class="px-3 py-2">{ cpu.CpuInfo[0].ModelName }</td>
+				</tr>
+				<tr class="bg-white dark:bg-transparent">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Vendor ID</td>
+					<td class="px-3 py-2">{ cpu.CpuInfo[0].VendorID }</td>
+				</tr>
+				<tr class="bg-gray-50 dark:bg-zinc-700">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Core Count</td>
+					<td class="px-3 py-2">{ strconv.Itoa(int(cpu.CpuInfo[0].Cores)) }</td>
+				</tr>
+				<tr class="bg-white dark:bg-transparent">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Clock Speed (MHz)</td>
+					<td class="px-3 py-2">{ fmt.Sprintf("%.2f MHz", cpu.CpuInfo[0].Mhz) }</td>
+				</tr>
+				<tr class="bg-gray-50 dark:bg-zinc-700">
+					<td class="px-3 py-2 font-medium text-gray-900 dark:text-white">Cache Size (KB)</td>
+					<td class="px-3 py-2">{ strconv.Itoa(int(cpu.CpuInfo[0].CacheSize)) } KB</td>
+				</tr>
+			</tbody>
+		</table>
+		<hr/>
+	</div>
+}
