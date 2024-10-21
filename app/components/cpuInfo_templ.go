@@ -76,7 +76,7 @@ func CpuInfo(cpu *metrics.CpuInfoResult) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var4 string
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(int(cpu.CpuInfo[1].Cores)))
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(int(cpu.CpuInfo[0].Cores)))
 		if templ_7745c5c3_Err != nil {
 			return templ.Error{Err: templ_7745c5c3_Err, FileName: `app/components/cpuInfo.templ`, Line: 28, Col: 68}
 		}
