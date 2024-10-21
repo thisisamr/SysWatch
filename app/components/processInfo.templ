@@ -31,7 +31,9 @@ templ ProcessInfo(process []*metrics.Proc) {
 							</div>
 						</td>
 						<td class="px-3 py-2 text-zinc-500">{ fmt.Sprintf("%.2f", item.CpuPercent) }</td>
-						<td class="px-3 py-2 text-xs">{ fmt.Sprintf("RSS: %s / VMS: %s", formatBytes(item.Mem.RSS), formatBytes(item.Mem.VMS)) }</td>
+						if item.Mem !=nil {
+							<td class="px-3 py-2 text-xs">{ fmt.Sprintf("RSS: %s / VMS: %s", formatBytes(item.Mem.RSS), formatBytes(item.Mem.VMS)) }</td>
+						}
 					</tr>
 				}
 			</tbody>

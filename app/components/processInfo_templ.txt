@@ -3,6 +3,8 @@
 </td><td class=\"px-3 py-2 text-zinc-500\"><div class=\"relative group\"><span class=\"block max-w-[100px] truncate\">
 </span> <span class=\"absolute z-10 hidden group-hover:block bg-gray-700 text-white text-xs rounded py-1 px-2 -mt-6 whitespace-nowrap\">
 </span></div></td><td class=\"px-3 py-2 text-zinc-500\">
-</td><td class=\"px-3 py-2 text-xs\">
-</td></tr>
+</td>
+<td class=\"px-3 py-2 text-xs\">
+</td>
+</tr>
 </tbody></table></div>
