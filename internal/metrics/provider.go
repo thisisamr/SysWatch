@@ -1,7 +1,6 @@
 package metrics
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/shirou/gopsutil/v4/cpu"
@@ -28,7 +27,6 @@ type Provider struct {
 }
 
 func (p *Provider) CPUInfo() ([]cpu.InfoStat, error) {
-	fmt.Println(cpu.Info())
 	return cpu.Info()
 }
 
