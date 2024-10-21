@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -9,13 +10,15 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/joho/godotenv"
 	"github.com/thisisamr/SysWatch/internal/metrics"
 	"github.com/thisisamr/SysWatch/internal/server"
 )
 
 func main() {
+	godotenv.Load()
 	// The HTTP Server
-	server := &http.Server{Addr: "0.0.0.0:3000", Handler: server.NewServer(&metrics.Provider{}).Router}
+	server := &http.Server{Addr: fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT")), Handler: server.NewServer(&metrics.Provider{}).Router}
 
 	// Server run context
 	serverCtx, serverStopCtx := context.WithCancel(context.Background())
