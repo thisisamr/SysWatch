@@ -16,6 +16,11 @@ dev:
 	templ generate -watch & \
 	air & \
 	wait'
+# Run dev_win if you are using windows 
+dev_win:
+	@echo "Starting development mode..."
+	@powershell -Command "Start-Process templ -ArgumentList 'generate','-watch'; Start-Process air; \
+		try { Wait-Process -Name templ, air } catch { Write-Host 'Development mode terminated.'}"
 
 # Build the binary
 build:
