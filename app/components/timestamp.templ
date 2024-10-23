@@ -1,12 +1,9 @@
 package components
 
-import (
-	"fmt"
-	"os"
-)
+import ()
 
 templ Time() {
-	<div hx-ext="ws" ws-connect={ fmt.Sprintf("http://%s:%s/metrics", os.Getenv("HOST"), os.Getenv("PORT")) } class="flex gap-1 items-center">
+	<div hx-ext="ws" ws-connect="/ws" class="flex gap-1 items-center">
 		<i class="fa-solid fa-circle text-green-400 text-[10px]"></i>
 		<div id="timestamp" class="text-xs text-gray-300"></div>
 	</div>

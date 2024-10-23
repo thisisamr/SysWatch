@@ -1,3 +1,2 @@
-<div hx-ext=\"ws\" ws-connect=\"
-\" class=\"grid grid-cols-1 md:grid-cols-2 gap-6 p-4\">
+<div hx-ext=\"ws\" ws-connect=\"/metrics\" class=\"grid grid-cols-1 md:grid-cols-2 gap-6 p-4\">
 </div>

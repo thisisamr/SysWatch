@@ -1,13 +1,9 @@
 package components
 
-import (
-	"fmt"
-	"github.com/thisisamr/SysWatch/internal/metrics"
-	"os"
-)
+import "github.com/thisisamr/SysWatch/internal/metrics"
 
 templ Metrics(metrics metrics.Metrics) {
-	<div hx-ext="ws" ws-connect={ fmt.Sprintf("http://%s:%s/metrics", os.Getenv("HOST"), os.Getenv("PORT")) } class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+	<div hx-ext="ws" ws-connect="/metrics" class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
 		{ children... }
 	</div>
 }
