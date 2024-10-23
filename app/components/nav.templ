@@ -2,36 +2,51 @@ package components
 
 templ Nav() {
 	<script>
-  // Function to toggle dark mode
-  function toggleDarkMode() {
-    const html = document.querySelector('html');
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      const html = document.querySelector('html');
 
-    // Toggle the 'dark' class
-    if (html.classList.contains('dark')) {
-      html.classList.remove('dark');
-      localStorage.setItem('theme', 'light'); // Store light mode preference
-    } else {
-      html.classList.add('dark');
-      localStorage.setItem('theme', 'dark'); // Store dark mode preference
+      // Get all toggle elements once
+      const icons = {
+        moon: document.getElementById('nav-moon'),
+        sun: document.getElementById('nav-sun'),
+        hamMoon: document.getElementById('ham-moon'),
+        hamSun: document.getElementById('ham-sun')
+      };
+
+      const isDarkMode = html.classList.toggle('dark');
+      localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+
+      icons.moon.classList.toggle('hidden', isDarkMode);
+      icons.sun.classList.toggle('hidden', !isDarkMode);
+      icons.hamMoon.classList.toggle('hidden', isDarkMode);
+      icons.hamSun.classList.toggle('hidden', !isDarkMode);
     }
-  }
 
-  // Function to apply the stored theme preference on page load
-  function applyStoredTheme() {
-    const storedTheme = localStorage.getItem('theme');
-    const html = document.querySelector('html');
+    // Function to apply the stored theme preference on page load
+    function applyStoredTheme() {
+      const storedTheme = localStorage.getItem('theme');
+      const html = document.querySelector('html');
+      const isDarkMode = storedTheme === 'dark';
 
-    // Check if there's a stored theme and apply it
-    if (storedTheme === 'dark') {
-      html.classList.add('dark');
-    } else {
-      html.classList.remove('dark');
+      // Get all toggle elements once
+      const icons = {
+        moon: document.getElementById('nav-moon'),
+        sun: document.getElementById('nav-sun'),
+        hamMoon: document.getElementById('ham-moon'),
+        hamSun: document.getElementById('ham-sun')
+      };
+
+      html.classList.toggle('dark', isDarkMode);
+      icons.moon.classList.toggle('hidden', isDarkMode);
+      icons.sun.classList.toggle('hidden', !isDarkMode);
+      icons.hamMoon.classList.toggle('hidden', isDarkMode);
+      icons.hamSun.classList.toggle('hidden', !isDarkMode);
     }
-  }
 
-  // Apply the stored theme when the page loads
-  document.addEventListener('DOMContentLoaded', applyStoredTheme);
-</script>
+    // Apply the stored theme when the page loads
+    document.addEventListener('DOMContentLoaded', applyStoredTheme);
+  </script>
 	<nav class="bg-gray-800 dark:bg-gray-900">
 		<div class="container mx-auto px-4">
 			<div class="flex items-center justify-between h-16">
@@ -43,6 +58,10 @@ templ Nav() {
 					@Time()
 				</div>
 				<div class="flex items-center md:hidden">
+					<button hx-on:click="toggleDarkMode()" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+						<i class="fa-solid fa-moon text-xl hidden" style="animation: fadeIn 1s;" id="ham-moon"></i> <!-- Moon icon placeholder -->
+						<i class="fa-solid fa-sun text-xl hidden" style="animation: fadeIn 1s;" id="ham-sun"></i> <!-- Moon icon placeholder -->
+					</button>
 					<button class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" id="menu-toggle">
 						<i class="fa-solid fa-bars"></i> <!-- Hamburger icon -->
 					</button>
@@ -59,13 +78,14 @@ templ Nav() {
 					</a>
 					<!-- Dark Mode Toggle Icon -->
 					<button hx-on:click="toggleDarkMode()" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-						<i class="fa-solid fa-moon text-xl"></i> <!-- Moon icon placeholder -->
+						<i class="fa-solid fa-moon text-xl hidden" style="animation: fadeIn 1s;" id="nav-moon"></i> <!-- Moon icon placeholder -->
+						<i class="fa-solid fa-sun text-xl hidden" id="nav-sun" style="animation: fadeIn 1s;"></i> <!-- Moon icon placeholder -->
 					</button>
 				</div>
 			</div>
 		</div>
 		<!-- Mobile Menu -->
-		<div class="md:hidden" id="mobile-menu" style="display: none;">
+		<div class="hidden md:hidden" id="mobile-menu">
 			<a href="/" class="block text-gray-300 hover:bg-gray-700 hover:text-white px-4 py-2 rounded-md text-sm font-medium">
 				Dashboard
 			</a>
