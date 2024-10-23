@@ -64,17 +64,11 @@ go mod tidy
 
 This will tidy up the `go.mod` and `go.sum` files and download the necessary modules.
 
-Here's the updated section of the README that includes instructions for installing Node.js using `nvm` for Linux/macOS, as well as direct binary installation for Windows.
-
----
-
 ### 3. Ensure Node.js is Installed
 
 SysWatch uses **TailwindCSS** for styling, which requires Node.js to run. You will need **Node.js** and **npm** installed. Below are instructions for installing Node.js via `nvm` (Node Version Manager) for Linux and macOS, and direct binary installation for Windows.
 
 #### Linux/macOS (Using `nvm`)
-
-The recommended way to install Node.js on Linux and macOS is by using **nvm** (Node Version Manager), which allows you to easily switch between Node.js versions.
 
 1. Install `nvm`:
 
@@ -115,19 +109,50 @@ node -v
 npm -v
 ```
 
-Once Node.js is installed, you'll be ready to build the CSS for SysWatch.
+### 4. Specify Environment Variables
 
-### 4. Run in Development Mode
+SysWatch requires environment variables for `HOST` and `PORT` to run properly. You can either:
 
-For local development with live reloading (using `Air`), run:
+1. Create an `.env` file in the root of the project and define the following:
 
-```bash
-make dev
+```
+HOST=localhost
+PORT=3000
 ```
 
-This will watch for code changes and rebuild/reload the app on changes.
+2. Or, specify them directly in your system environment:
 
-### 5. Build for Production
+```bash
+export HOST=localhost
+export PORT=3000
+```
+
+If no environment variables are set, the application will fall back to defaults (`localhost:3000`).
+
+### 5. Run in Development Mode
+
+For local development with live reloading, run:
+
+- **Linux/macOS**: Use the command:
+
+  ```bash
+  make dev
+  ```
+
+- **Windows**: Use the command:
+
+  ```bash
+  make dev_win
+  ```
+
+On Windows, make sure to modify the `air.toml` configuration file as follows:
+
+- Replace `bin = "./tmp/main"` with `bin = "./tmp/main.exe"`
+- Replace `cmd = "go build -tags dev -o ./tmp/main cmd/main.go"` with `cmd = "go build -tags dev -o ./tmp/main.exe cmd/main.go"`
+
+This will ensure that the correct binary (`main.exe`) is generated for Windows development.
+
+### 6. Build for Production
 
 To build the application, you can use the `make build` command, which will compile the binary into the `/bin` directory.
 
@@ -141,15 +166,15 @@ You can then run the binary from the `/bin` folder:
 ./bin/syswatch
 ```
 
-### 6. Run the Application
+### 7. Run the Application
 
 After building or running in development mode, access the application by navigating to:
 
 ```
-http://localhost:3000
+http://host-name:3000
 ```
 
-### 7. TailwindCSS
+### 8. TailwindCSS
 
 To watch and compile your TailwindCSS files, use the following command:
 
@@ -159,7 +184,7 @@ make css
 
 This will watch the CSS files and compile them into `./static/output.css`.
 
-### 8. Run Tests
+### 9. Run Tests
 
 SysWatch includes unit tests for various components. You can run all tests with:
 
@@ -167,7 +192,7 @@ SysWatch includes unit tests for various components. You can run all tests with:
 make test
 ```
 
-### 9. Clean Up
+### 10. Clean Up
 
 To clean up build artifacts, run:
 
@@ -176,6 +201,10 @@ make clean
 ```
 
 This will remove the compiled binaries and other temporary files.
+
+## Experimental Release
+
+You can download the compiled binaries for the **experimental release v0.1.0** from the [releases section](https://github.com/thisisamr/SysWatch/releases). This version provides a basic functional version of SysWatch for testing purposes.
 
 ---
 
