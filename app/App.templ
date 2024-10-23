@@ -24,8 +24,8 @@ templ App() {
         @apply mb-0;
       }
     </style>
-			<script src="https://unpkg.com/htmx.org@1.9.12"></script>
-			<script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/ws.js"></script>
+			<script src="https://unpkg.com/htmx.org@2.0.3" integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq" crossorigin="anonymous"></script>
+			<script src="https://unpkg.com/htmx-ext-ws@2.0.1/ws.js"></script>
 			<link href="/static/output.css" rel="stylesheet"/>
 		</head>
 		<body class="bg-zinc-50 dark:bg-[#212529]">
@@ -35,6 +35,17 @@ templ App() {
 			</div>
 		</body>
 		<script>
+		function handleScreenResize() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const screenWidth = window.innerWidth;
+    // Check if the screen width is larger than 768px (md breakpoint in Tailwind)
+    if (screenWidth >= 768) {
+      mobileMenu.style.display = 'none';
+    }
+  }
+
+  // Add event listeners
+  window.addEventListener('resize', handleScreenResize);
     document.getElementById('menu-toggle').addEventListener('click', function () {
         var mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenu.style.display === "none" || mobileMenu.style.display === "") {
