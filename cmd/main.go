@@ -10,16 +10,19 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/joho/godotenv"
+	"github.com/thisisamr/SysWatch/config"
 	"github.com/thisisamr/SysWatch/internal/metrics"
 	"github.com/thisisamr/SysWatch/internal/server"
 )
 
 func main() {
-	godotenv.Load()
-	// The HTTP Server
-	server := &http.Server{Addr: fmt.Sprintf("%s:%s", os.Getenv("HOST"), os.Getenv("PORT")), Handler: server.NewServer(&metrics.Provider{}).Router}
 
+	config.InitConfig()
+	// The HTTP server with handler and address
+	server := &http.Server{
+		Addr:    fmt.Sprintf("%s:%s", config.Host, config.Port),
+		Handler: server.NewServer(&metrics.Provider{}).Router,
+	}
 	// Server run context
 	serverCtx, serverStopCtx := context.WithCancel(context.Background())
 
@@ -57,7 +60,7 @@ func main() {
 			log.Fatal(err)
 		}
 	}()
-	log.Println("Server is running on port " + "3000")
+	log.Printf("Server is running on http://%s:%s", config.Host, config.Port)
 	// Wait for server context to be stopped
 	<-serverCtx.Done()
 	log.Println("Server stopped.")
