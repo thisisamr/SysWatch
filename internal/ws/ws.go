@@ -3,6 +3,7 @@ package ws
 import (
 	"bytes"
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"sync"
@@ -40,7 +41,7 @@ func ClockWsHandler(w http.ResponseWriter, r *http.Request) {
 		for {
 			// Writing a message to the client
 			buf.Reset() // Reset the buffer for each message
-			components.Clock(time.Now().Format("Monday, January 2, 2006 15:04:05")).Render(context.Background(), &buf)
+			components.Clock(fmt.Sprintf("%s %s", time.Now().Month().String()[:3], time.Now().Format("2, 2006 15:04:05"))).Render(context.Background(), &buf)
 
 			// Attempt to write to the WebSocket
 			select {
